@@ -1,4 +1,4 @@
-package com.mike.day1.application;
+package com.mike.day1.part1.application;
 
 import org.junit.jupiter.api.Test;
 
