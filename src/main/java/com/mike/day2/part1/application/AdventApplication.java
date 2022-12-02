@@ -16,7 +16,7 @@ public class AdventApplication {
 
 		final List<Map.Entry<Hand, Hand>> entries = InputParser.readInput( "day2/actual.txt" );
 
-		Integer score = entries.stream()
+		final Integer score = entries.stream()
 				.map( entry -> Calculator.getRoundScore( entry ) )
 				.mapToInt( Integer::intValue )
 				.sum();

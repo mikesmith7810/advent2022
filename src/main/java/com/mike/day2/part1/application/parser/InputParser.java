@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InputParser {
 
-	public static List<Map.Entry<Hand, Hand>> readInput(final String filename ) throws Exception {
+	public static List<Map.Entry<Hand, Hand>> readInput( final String filename ) throws Exception {
 
 		final List<Map.Entry<Hand, Hand>> inputLines = new ArrayList<>();
 

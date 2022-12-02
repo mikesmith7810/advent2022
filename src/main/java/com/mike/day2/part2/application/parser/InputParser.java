@@ -28,8 +28,7 @@ public class InputParser {
 
 		lines.forEach( line -> inputLines.add( new AbstractMap.SimpleEntry<Hand, String>(
 				Hand.forIdentifier1( line.split( " " )[0] ),
-				line.split( " " )[1] ) )
-		);
+				line.split( " " )[1] ) ) );
 
 		return inputLines;
 	}
