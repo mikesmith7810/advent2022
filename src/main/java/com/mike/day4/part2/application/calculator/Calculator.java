@@ -20,9 +20,9 @@ public class Calculator {
 		Integer start2 = Integer.valueOf( pair2.substring( 0, pair2.indexOf( "-" ) ) );
 		Integer end2 = Integer.valueOf( pair2.substring( pair2.indexOf( "-" ) + 1 ) );
 
-		if ( start1 >= start2 && end1 <= end2 )
+		if ( ( start1 >= start2 && start1 <= end2 ) || end1 >= start2 && end1 <= end2 )
 			return true;
-		else if ( start2 >= start1 && end2 <= end1 )
+		else if ( ( start2 >= start1 && start2 <= end1 ) || ( end2 <= start1 && end2 <= end1 ) )
 			return true;
 		else
 			return false;
