@@ -1,6 +1,13 @@
 package com.mike.day6.part2.application;
 
-import com.mike.day6.part1.application.parser.InputParser;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
+import com.mike.day6.part2.application.parser.InputParser;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,25 +16,31 @@ public class AdventApplication {
 	public static void main( final String[] args ) throws Exception {
 		log.info( "Day 4" );
 
-		final String entries = InputParser.readInput( "day6/example.txt" );
+		final ArrayList<Character> entries = InputParser.readInput( "day6/example.txt" );
 
-		int index = 0;
-		for ( int i = 3; i < entries.length(); i++ ) {
-			boolean unique = checkIfUniqueCharacters( entries, i - 4, i );
+		AtomicInteger counter = new AtomicInteger( 0 );
 
-		}
+		int index = entries.stream().map( character -> {
+			int marker = counter.getAndIncrement();
+			checkIfMatchingCharacters( List.of(
+
+					entries.get( marker ), entries.get( marker + 1 ), entries.get( marker + 2 ),
+					entries.get( marker + 3 ) ) );
+
+			return marker + 4;
+
+		} ).findFirst().get();
 
 		log.info( "Index of uniqueness : " + index );
 	}
 
-	private static boolean checkIfUniqueCharacters( final String input, final int start,
-			final int end ) {
+	private static boolean checkIfMatchingCharacters( final List<Character> characters ) {
 
-		for ( int i = start + 1; i < end; i++ ) {
+		Set<Character> items = new HashSet<>();
 
-			if ( input.charAt( start ) == input.charAt( i ) )
-				return true;
-		}
-		return false;
+		return characters.stream()
+				.filter( character -> !items.add( character ) )
+				.collect( Collectors.toList() )
+				.size() != 4;
 	}
 }
